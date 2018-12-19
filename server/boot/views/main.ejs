@@ -26,9 +26,9 @@
             access for all users (using the built-in role $everyone).</td>
       </tr>
       <tr>
-        <td><a href="/api/projects<% if (typeof accessToken !== 'undefined') {
+        <td><a href="/api/courses<% if (typeof accessToken !== 'undefined') {
             %>?access_token=<%= accessToken %><% } %>">View all
-            projects</a></td>
+            courses</a></td>
         <td>Only administrators can view all projects</td>
         <td>GET /api/projects</td>
         <td>admin</td>

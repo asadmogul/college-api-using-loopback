@@ -38,5 +38,13 @@
   "course": {
     "dataSource": "db",
     "public": true
+  },
+  "student": {
+    "dataSource": "db",
+    "public": true
+  },
+  "admin": {
+    "dataSource": "db",
+    "public": false
   }
 }

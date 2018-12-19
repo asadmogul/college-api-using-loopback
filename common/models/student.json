@@ -1,24 +1,24 @@
 {
-  "name": "course",
-  "base": "PersistedModel",
+  "name": "student",
+  "base": "User",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "courseName": {
+    "stName": {
       "type": "string",
       "required": true
     },
-    "creditHours": {
+    "roll": {
       "type": "number"
     }
   },
   "validations": [],
   "relations": {
-    "students": {
+    "courses": {
       "type": "hasMany",
-      "model": "student",
+      "model": "course",
       "foreignKey": ""
     }
   },
@@ -28,6 +28,13 @@
       "principalType": "ROLE",
       "principalId": "$unauthenticated",
       "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "viewCourse"
     }
   ],
   "methods": {}
