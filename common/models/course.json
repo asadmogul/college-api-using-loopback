@@ -1,5 +1,5 @@
 {
-  "name": "course",
+  "name": "Course",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -18,7 +18,12 @@
   "relations": {
     "students": {
       "type": "hasMany",
-      "model": "student",
+      "model": "Student",
+      "foreignKey": ""
+    },
+    "admin": {
+      "type": "hasOne",
+      "model": "Admin",
       "foreignKey": ""
     }
   },

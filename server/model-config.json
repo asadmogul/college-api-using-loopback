@@ -35,15 +35,15 @@
     "dataSource": "db",
     "public": false
   },
-  "course": {
+  "Course": {
     "dataSource": "db",
     "public": true
   },
-  "student": {
+  "Student": {
     "dataSource": "db",
     "public": true
   },
-  "admin": {
+  "Admin": {
     "dataSource": "db",
     "public": false
   }

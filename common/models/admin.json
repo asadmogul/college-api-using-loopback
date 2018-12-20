@@ -1,5 +1,5 @@
 {
-  "name": "admin",
+  "name": "Admin",
   "base": "User",
   "idInjection": true,
   "options": {
@@ -10,7 +10,12 @@
   "relations": {
     "students": {
       "type": "hasMany",
-      "model": "student",
+      "model": "Student",
+      "foreignKey": ""
+    },
+    "courses": {
+      "type": "hasMany",
+      "model": "Course",
       "foreignKey": ""
     }
   },
@@ -34,6 +39,13 @@
       "principalId": "$authenticated",
       "permission": "ALLOW",
       "property": "addCourse"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "removeCourse"
     }
   ],
   "methods": {}
