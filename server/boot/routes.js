@@ -41,11 +41,11 @@ module.exports = function(app) {
   router.post('/courses/enroll-courses', function(req, res) {
     var cName = req.body.courseName;
     var cHours = req.body.cHours;
-    var t = req.body.access_token;
-    console.log(t);
+    var uname = req.body.username;
+    console.log(uname);
     
     
-    app.models.User.find({where: {id: t, username: "Asad"}}, (err, instance) => {
+    app.models.User.find({where: {id: uname}}, (err, instance) => {
       if(err){
         console.log('Only Admin can add course');
         return err;
