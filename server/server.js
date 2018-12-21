@@ -3,7 +3,23 @@
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 var path = require('path');
+var bodyParser = require('body-parser');
+
 var app = module.exports = loopback();
+
+app.middleware('initial', bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'ejs');
+app.set('views', path.resolve(__dirname, 'views'));
+
+boot(app, __dirname, function(err) {
+  if (err) throw err;
+
+  // start the server if `$ node server.js`
+  if (require.main === module)
+    app.start();
+});
+
 
 app.start = function() {
   // start the web server
@@ -17,15 +33,3 @@ app.start = function() {
     }
   });
 };
-
-app.set('view engine', 'ejs');
-app.set('views', path.resolve(__dirname, 'views'));
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function(err) {
-  if (err) throw err;
-
-  // start the server if `$ node server.js`
-  if (require.main === module)
-    app.start();
-});

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>College</title>
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
+    <style>
+
+      body{
+          background:rgb(248, 248, 248);
+          font-family:'courier new';
+          color: #272424;
+          padding: 30px;
+      }
+      h1{
+          font-size: 40px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          text-align: center;
+      }
+      table{
+          font-size: 13px;
+          text-align: center;
+          padding: 5;
+          align-self: center;
+          border: 1px gray;
+      }
+      button{
+          background:#eee;
+          border:0;
+          color:#777;
+          cursor:pointer;
+          font-family:'courier new';
+          font-size:1rem;
+          padding:.5rem;
+      }
+      input, .button {
+        background:#ddd;
+        border:0;
+        display:inline-block;
+        font-family:'courier new';
+        margin-bottom:1rem;
+        padding:.5rem;
+        vertical-align:middle;
+      }
+      #fail{
+          color: red;
+      }
+      #tableRowHead, th{
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .button, #logout {
+        font-weight: bold;
+        text-decoration: none;
+        color: #272424;
+      }
+      </style>
+  
+
+
+  </head>
+  <body>
+  <h1>Add you course <% if (typeof username !== 'undefined') { %><%=
+      username %><% } %></h1>
+    <table>
+      <tr>
+        <td>
+            Course added
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

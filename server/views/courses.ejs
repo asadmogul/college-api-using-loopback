@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Test</title>
+    <title>College</title>
     <!-- <link href="css/style.css" rel="stylesheet"> -->
     <style>
 
@@ -80,25 +80,52 @@
         <td>Guest, Student, Administrator</td>
       </tr>
       <tr>
-        <td><a class="button" href="/api/courses<% if (typeof accessToken !== 'undefined') {
-            %>?access_token=<%= accessToken %><% } %>">Add Courses</a></td>
+        <td>
+          <!-- <a class="button" href="/api/courses/<% if (typeof accessToken !== 'undefined') {
+          %>?access_token=<%= accessToken %><% } %>">Add Courses</a> -->
+          <form action="/api/courses/<% if (typeof accessToken !== 'undefined') {
+            %>?access_token=<%= accessToken %><% } %>" method="post">
+            <input type="text" name="courseName" placeholder="Course Name"><br>
+            <input type="text" name="creditHours" placeholder="Credit Hours"><br>
+            <input type="submit" value="Add">
+          </form>
+        </td>
         <td>Only administrators can add a new course, but a student can add it to his list</td>
         <td>GET /api/courses</td>
         <td>Admin, Student(His)</td>
         <td>Administator</td>
       </tr>
       <tr>
-        <td><a class="button" href="/api/courses<% if (typeof accessToken !== 'undefined') {
-            %>?access_token=<%= accessToken %><% } %>">Delete Courses</a></td>
+        <td>
+          <!-- <a class="button" href="/api/courses<% if (typeof accessToken !== 'undefined') {
+            %>?access_token=<%= accessToken %><% } %>">Delete Courses</a> -->
+          
+            <form action="/api/courses/<% if (typeof accessToken !== 'undefined') {
+              %>?access_token=<%= accessToken %><% } %>" method="post">
+              <input type="text" name="courseName" placeholder="Course Name"><br>
+              <input type="submit" value="Delete">
+            </form>
+  
+        </td>
         <td>Administator can delete a course but a student can delete from his list</td>
         <td>GET /api/courses</td>
         <td>Admin</td>
         <td>Administator</td>
       </tr>
+      <% if (courseExist) { %>
+        <tr>
+          <td colspan=6>
+              <span id="fail">Course already existed</span>
+          </td>
+        </tr>
+      <% } %>
       <tr>
-        <td colspan="6"><a class="button" id="logout" href="/logout<% if (typeof accessToken !==
-            'undefined') { %>?access_token=<%= accessToken %><% } %>">Log
-            out</a></td>
+        <td colspan="6">
+          <a class="button" id="logout" href="/logout<% if (typeof accessToken !==
+            'undefined') { %>?access_token=<%= accessToken %><% } %>">
+            Logout
+          </a>
+        </td>
       </tr>
     </table>
   </body>

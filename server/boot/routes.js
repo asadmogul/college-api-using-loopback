@@ -7,10 +7,6 @@ module.exports = function(app) {
     });
   });
 
-  router.get('/courses', function(req, res) {
-    res.render('courses');
-  });
-
   router.post('/courses', function(req, res) {
     var email = req.body.email;
     var password = req.body.password;
@@ -30,10 +26,53 @@ module.exports = function(app) {
 
       res.render('courses', {
         username: token.user.username,
-        accessToken: token.id
+        accessToken: token.id,
+        courseExist: false
       });
     });
+  });  
+
+  router.get('/courses', function(req, res) {
+    res.render('courses', {
+      courseExist: false
+    });
   });
+
+  router.post('/courses/enroll-courses', function(req, res) {
+    var cName = req.body.courseName;
+    var cHours = req.body.cHours;
+    var t = req.body.access_token;
+    console.log(t);
+    
+    
+    app.models.User.find({where: {id: t, username: "Asad"}}, (err, instance) => {
+      if(err){
+        console.log('Only Admin can add course');
+        return err;
+      }
+      app.models.Course.create({
+        courseName: cName,
+        creditHours: cHours
+      }, function(err, instance) {
+        if (err) 
+          return res.render('courses', {
+            courseName:cName,
+            courseExist: true
+          });
+
+        instance = instance.toJSON();
+
+        res.render('enroll-courses', app.models.Course.find({
+          order: 'courseName DESC'
+        }, cb));
+      });
+
+      });
+
+
+    });
+
+
 
   router.get('/logout', function(req, res) {
     var AccessToken = app.models.AccessToken;
