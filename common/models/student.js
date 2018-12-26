@@ -1,15 +1,19 @@
 'use strict';
 
 module.exports = function(Student) {
-    Student.enrollCourse = function(cb) {
-        cb(null, response);
-      };
+  var app = require('../../server/server');
+  var courses = app.models.Course;
+  Student.myCourses = function(cb) {
+    Student.find({
+
+    }, cb);
+  };
  
     Student.remoteMethod(
-        'enrollCourse', {
+        'myCourses', {
           http: {
-            path: '/enrollCourse',
-            verb: 'post',
+            path: '/my-courses',
+            verb: 'get',
           },
           returns: {
             arg: 'status',
@@ -17,6 +21,7 @@ module.exports = function(Student) {
           },
         }
     );
+    
     Student.deleteCourse = function(cb) {
         cb(null, response);
       };

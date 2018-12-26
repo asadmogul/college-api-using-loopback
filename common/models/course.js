@@ -8,9 +8,10 @@ module.exports = function(Course) {
 
     Course.listCourse = function(cb) {
         Course.find({
-            order: 'courseName DESC'
+            order: 'courseName ASC' 
+            // include: "students"
         }, cb);
-      };
+    };
     Course.remoteMethod(
         'listCourse', {
           http: {

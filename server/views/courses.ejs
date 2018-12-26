@@ -73,7 +73,11 @@
         <th>Roles</th>
       </tr>
       <tr>
-        <td><a class="button" href="/api/courses/list-courses">List Courses</a></td>
+        <% if (username!== 'Asad' && typeof username !== 'undefined'){ %>
+          <td><a class="button" href="/api/courses/my-courses">My Courses</a></td>
+        <%} else{ %>
+          <td><a class="button" href="/api/courses/list-courses">List Courses</a></td>
+        <%}%>
         <td>Anyone can list courses but a logged in student can see his</td>
         <td>GET /api/courses/list-courses</td>
         <td>$everyone, $unauthenticated, $authenticated</td>
@@ -81,17 +85,25 @@
       </tr>
       <tr>
         <td>
-          <!-- <a class="button" href="/api/courses/<% if (typeof accessToken !== 'undefined') {
-          %>?access_token=<%= accessToken %><% } %>">Add Courses</a> -->
           <form action="/api/courses/<% if (typeof accessToken !== 'undefined') {
             %>?access_token=<%= accessToken %><% } %>" method="post">
-            <input type="text" name="courseName" placeholder="Course Name"><br>
-            <input type="text" name="creditHours" placeholder="Credit Hours"><br>
+
+            <% if (username!== 'Asad'){ %><input type="text" name="studentId" placeholder="<%=id%>" value="<%=id%>" disabled><br>
+            <select name="courseName" class="button">
+              <% courseArray.forEach(course => { %>
+              <option value="<%=course.courseName%>"><%=course.courseName %></option>
+              <% }) %>
+            </select>
+            <input type="text" name="creditHours" placeholder="Credit Hours" disabled><br>
+            <%} else{%>
+              <input type="text" name="courseName" placeholder="Course Name" required><br>
+              <input type="text" name="creditHours" placeholder="Credit Hours" required><br>
+            <%}%>
             <input type="submit" value="Add">
           </form>
         </td>
         <td>Only administrators can add a new course, but a student can add it to his list</td>
-        <td>GET /api/courses</td>
+        <td>POST /api/courses</td>
         <td>Admin, Student(His)</td>
         <td>Administator</td>
       </tr>
@@ -108,7 +120,7 @@
   
         </td>
         <td>Administator can delete a course but a student can delete from his list</td>
-        <td>GET /api/courses</td>
+        <td>POST /api/courses</td>
         <td>Admin</td>
         <td>Administator</td>
       </tr>
